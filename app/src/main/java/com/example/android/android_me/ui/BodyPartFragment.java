@@ -11,11 +11,18 @@ import android.widget.ImageView;
 import com.example.android.android_me.R;
 import com.example.android.android_me.data.AndroidImageAssets;
 
+import java.util.List;
+
 /**
  * Created by Vamsi Rao on 5/11/2017.
  */
 
 public class BodyPartFragment extends Fragment {
+
+    private List<Integer> mImageIds;
+    private int mListIndex;
+
+
     public BodyPartFragment() {
 
     }
@@ -27,7 +34,16 @@ public class BodyPartFragment extends Fragment {
        //Because we're trying to find image view inside the rootview.
         ImageView imageView= (ImageView)rootView.findViewById(R.id.body_part_image_view);
 
-        imageView.setImageResource(AndroidImageAssets.getHeads().get(0));
+        if(mImageIds!=null) {
+            imageView.setImageResource(mImageIds.get(mListIndex));
+        }
         return rootView;
+    }
+
+    public void setImageIds(List<Integer> imageIds){
+        mImageIds=imageIds;
+    }
+    public void setListIndex(int index){
+        mListIndex=index;
     }
 }
